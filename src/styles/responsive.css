@@ -128,10 +128,14 @@
     gap: var(--space-7);
   }
 
+  /* relative (not static): turns off desktop stickiness but keeps the offset
+     ::before frame anchored to the photo instead of the whole About section */
   .about__visual {
-    position: static;
+    position: relative;
     max-width: 420px;
     margin-right: var(--space-4);
+    /* clears the frame, which sits 16px below the photo */
+    margin-bottom: var(--space-6);
   }
 
   .section-title--split {
