@@ -1,14 +1,14 @@
 /* ---------- Hero ---------- */
 
-.hero {
+/* Dark stage in the site's own palette: near-black, white and the warm sand tint */
+.section.hero {
   display: flex;
   align-items: center;
   min-height: 100vh;
-}
-
-/* Soft sand-tinted atmosphere behind the name, fading into the white background */
-.hero {
   overflow: hidden;
+  background: var(--color-dark);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-on-dark);
 }
 
 .hero::before {
@@ -16,25 +16,44 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* A broad wash across the top, strongest behind the name, fading to white below */
   background:
-    radial-gradient(ellipse 90% 75% at 28% 22%, rgba(var(--color-sand), 0.55), rgba(var(--color-sand), 0.18) 45%, transparent 75%),
-    linear-gradient(180deg, rgba(var(--color-sand), 0.22) 0%, rgba(var(--color-sand), 0) 62%);
+    radial-gradient(ellipse 60% 60% at 78% 30%, rgba(var(--color-sand), 0.2), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 8% 0%, rgba(var(--color-sand), 0.12), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 480' preserveAspectRatio='none' fill='none'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='%23d8c7ab' stop-opacity='0.28'/><stop offset='0.55' stop-color='%23d8c7ab' stop-opacity='0.5'/><stop offset='1' stop-color='%23d8c7ab' stop-opacity='0.12'/></linearGradient><linearGradient id='f' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='%23d8c7ab' stop-opacity='0.04'/><stop offset='0.6' stop-color='%23d8c7ab' stop-opacity='0.09'/><stop offset='1' stop-color='%23d8c7ab' stop-opacity='0.02'/></linearGradient></defs><path d='M0 24C320 118 640 -8 1000 74S1460 214 1600 132V196C1470 290 1150 190 1000 128S320 214 0 84Z' fill='url(%23f)'/><path d='M0 24C320 118 640 -8 1000 74S1460 214 1600 132' stroke='url(%23g)' stroke-width='1.3'/><path d='M0 54C330 148 650 22 1010 102S1465 244 1600 160' stroke='url(%23g)' stroke-width='1.3'/><path d='M0 84C340 178 660 52 1020 130S1470 274 1600 190' stroke='url(%23g)' stroke-width='1.3'/><path d='M0 114C350 208 670 82 1030 158S1475 304 1600 220' stroke='url(%23g)' stroke-width='1.3'/></svg>") no-repeat top left / 100% 100%;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.hero__container {
+  position: relative;
+  display: grid;
+  gap: var(--space-7);
+  max-width: 1400px;
 }
 
 .hero__inner {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.8fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-7);
 }
 
 .hero__greeting {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  color: var(--color-muted);
+  color: var(--color-on-dark-muted);
   font-size: var(--text-sm);
   font-weight: 500;
 }
@@ -43,147 +62,270 @@
   content: '';
   width: 24px;
   height: 1px;
-  background: var(--color-primary);
+  background: rgb(var(--color-sand));
 }
 
+.hero__content {
+  container-type: inline-size;
+}
+
+/* Scales with its own column, so "Eslam Hany Mohamed" always stays on one line on desktop */
 .hero__title {
   margin-top: var(--space-5);
-  font-size: var(--text-hero);
+  font-size: min(3.4rem, 8.6cqw);
   font-weight: 700;
   letter-spacing: -0.045em;
-  line-height: 0.98;
+  line-height: 1.02;
+}
+
+@media (min-width: 768px) {
+  .hero__title {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero__title {
+    font-size: clamp(2rem, 9.5cqw, 3rem);
+  }
+}
+
+.hero__title-accent {
+  color: rgb(var(--color-sand));
 }
 
 .hero__role {
-  margin-top: var(--space-6);
-  font-size: var(--text-xl);
+  position: relative;
+  display: inline-block;
+  margin-top: var(--space-4);
+  padding-bottom: var(--space-4);
+  font-size: clamp(1.4rem, 1rem + 1.2vw, 2.1rem);
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
+}
+
+.hero__role::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 120px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgb(var(--color-sand)), rgba(var(--color-sand), 0));
 }
 
 .hero__roles {
-  margin-top: var(--space-2);
-  max-width: 54ch;
-  color: var(--color-muted);
+  margin-top: var(--space-4);
+  color: var(--color-on-dark-muted);
   font-size: var(--text-base);
-  line-height: 1.75;
-}
-
-.hero__role-item {
-  white-space: nowrap;
 }
 
 .hero__dot {
-  color: var(--color-text);
+  color: rgba(var(--color-sand), 0.8);
 }
 
 .hero__summary {
+  max-width: 54ch;
   margin-top: var(--space-5);
-  max-width: 56ch;
-  color: var(--color-text-soft);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--text-base);
 }
 
 .hero__content > .dev-note {
-  margin-top: var(--space-5);
-  max-width: 56ch;
+  margin-top: var(--space-4);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-top: var(--space-7);
+  margin-top: var(--space-6);
 }
 
-.hero__panel {
-  padding: var(--space-6) var(--space-6) var(--space-5);
-  border-radius: var(--radius-md);
-  background: var(--color-dark);
+/* Outline button for dark backgrounds */
+.btn--outline-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
   color: var(--color-on-dark);
 }
 
-.hero__panel-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding-bottom: var(--space-4);
+.btn--outline-light:hover {
+  background: var(--color-on-dark);
+  border-color: var(--color-on-dark);
+  color: var(--color-primary);
 }
 
-.hero__panel-label,
-.hero__panel-count {
-  color: var(--color-on-dark-muted);
-  font-size: var(--text-2xs);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
+/* Laptop + floating cards */
+.hero__stage {
+  position: relative;
+  justify-self: end;
+  width: 112%;
+  max-width: 820px;
+  margin-right: -6%;
+  aspect-ratio: 1 / 0.74;
+  container-type: inline-size;
 }
 
-.hero__panel-count {
-  font-variant-numeric: tabular-nums;
-}
-
-.hero__panel-list li {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-4);
-  padding: 0.85rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: var(--text-base);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  transition:
-    transform var(--duration) var(--ease),
-    color var(--duration) var(--ease);
-}
-
-.hero__panel-list li:hover {
-  transform: translateX(4px);
-}
-
-.hero__panel-index {
-  min-width: 1.5rem;
-  color: var(--color-on-dark-muted);
-  font-size: var(--text-2xs);
-  font-variant-numeric: tabular-nums;
-}
-
-.hero__photo {
-  overflow: hidden;
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-}
-
-.hero__photo img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
-
-.hero__scroll {
+/* Warm glow behind the plinth */
+.hero__stage::before {
+  content: '';
   position: absolute;
-  bottom: var(--space-6);
-  left: var(--section-pad-x);
+  inset: 8% 0 0;
+  background: radial-gradient(ellipse 55% 50% at 45% 65%, rgba(var(--color-sand), 0.22), transparent 72%);
+  pointer-events: none;
+}
+
+/* Laptop on a wide stone plinth that bleeds to both edges of the stage */
+.hero__laptop {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.hero__chips {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__chip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1cqw;
+  width: 17.5cqw;
+  padding: 1.7cqw 0.8cqw;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 3.2cqw;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 28px rgba(var(--color-sand), 0.1),
+    0 18px 30px -16px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(14px);
+  color: var(--color-on-dark);
+  font-size: max(11px, 2.05cqw);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  text-wrap: balance;
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.hero__chip svg {
+  width: 4.6cqw;
+  height: 4.6cqw;
+  min-width: 20px;
+  min-height: 20px;
+  color: rgb(var(--color-sand));
+  filter: drop-shadow(0 0 8px rgba(var(--color-sand), 0.6));
+}
+
+/* Positions follow the reference layout (percent of the stage) */
+.hero__chip--ai {
+  top: 15%;
+  left: 39.5%;
+  width: 18.5cqw;
+}
+
+.hero__chip--ecommerce {
+  top: 28.5%;
+  left: 18%;
+  animation-delay: -2s;
+}
+
+.hero__chip--video {
+  top: 51.5%;
+  left: 11.5%;
+  animation-delay: -3.5s;
+}
+
+.hero__chip--uiux {
+  top: 23.5%;
+  left: 71.5%;
+  animation-delay: -1.5s;
+}
+
+.hero__chip--automation {
+  top: 46.5%;
+  left: 77.5%;
+  animation-delay: -3s;
+}
+
+.hero__chip--models {
+  top: 64.5%;
+  left: 69%;
+  width: 18.5cqw;
+  animation-delay: -4.5s;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__chip {
+    animation: none;
+  }
+}
+
+/* Disciplines bar */
+.hero__disciplines {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.hero__disciplines-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.hero__disciplines-list {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.hero__discipline {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--color-muted);
-  font-size: var(--text-2xs);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  transition: color var(--duration-fast) var(--ease);
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    background-color var(--duration-fast) var(--ease);
 }
 
-.hero__scroll svg {
-  transition: transform var(--duration) var(--ease);
+.hero__discipline svg {
+  color: rgb(var(--color-sand));
 }
 
-.hero__scroll:hover {
-  color: var(--color-text);
-}
-
-.hero__scroll:hover svg {
-  transform: translateY(3px);
+.hero__discipline:hover {
+  border-color: rgba(var(--color-sand), 0.6);
+  background: rgba(var(--color-sand), 0.12);
 }
 
 /* ---------- About ---------- */
@@ -1526,4 +1668,19 @@ a.contact-method:hover .contact-method__arrow {
 
 .experience-group + .experience-group {
   margin-top: var(--space-8);
+}
+
+/* Several logos in one entry (e.g. MGH + NAHJ + Mindset) */
+.company-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.company-logos__join {
+  color: var(--color-muted);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1;
 }

@@ -106,10 +106,6 @@
     min-height: calc(100svh - var(--topbar-height));
   }
 
-  .hero__scroll {
-    display: none;
-  }
-
   .teaching__inner {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-7);
@@ -216,7 +212,6 @@
     flex: 1 1 100%;
   }
 
-  .hero__panel,
   .service-card,
   .timeline__card,
   .skill-card,
@@ -256,3 +251,26 @@
     align-items: flex-start;
   }
 }
+
+/* Hero: floating cards adapt to narrower screens */
+
+@media (max-width: 767.98px) {
+  .hero__stage {
+    justify-self: center;
+    width: 100%;
+    max-width: 480px;
+    margin-right: 0;
+    aspect-ratio: auto;
+  }
+
+  .hero__laptop {
+    position: static;
+    width: 100%;
+  }
+
+  /* The bottom bar already lists the disciplines */
+  .hero__chips {
+    display: none;
+  }
+}
+

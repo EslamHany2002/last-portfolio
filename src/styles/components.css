@@ -640,3 +640,26 @@
   font-size: var(--text-xs);
   line-height: 1.5;
 }
+
+/* ---------- Sidebar: golden ribbon lines along the bottom ---------- */
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 260' preserveAspectRatio='none' fill='none'><defs><linearGradient id='g' x1='0' y1='1' x2='1' y2='0'><stop offset='0' stop-color='%23b79f78' stop-opacity='0'/><stop offset='0.45' stop-color='%23b79f78' stop-opacity='0.55'/><stop offset='1' stop-color='%23b79f78' stop-opacity='0.15'/></linearGradient><linearGradient id='f' x1='0' y1='1' x2='1' y2='0'><stop offset='0' stop-color='%23d8c7ab' stop-opacity='0'/><stop offset='0.6' stop-color='%23d8c7ab' stop-opacity='0.28'/><stop offset='1' stop-color='%23d8c7ab' stop-opacity='0.05'/></linearGradient></defs><path d='M0 260C70 230 120 160 190 130S280 100 300 40V150C250 190 200 200 150 230S60 270 0 260Z' fill='url(%23f)'/><path d='M0 250C70 220 125 150 195 118S285 84 300 24' stroke='url(%23g)' stroke-width='1.2'/><path d='M0 262C75 236 135 172 205 142S290 112 300 58' stroke='url(%23g)' stroke-width='1.2'/><path d='M0 274C82 252 146 194 216 166S294 140 300 92' stroke='url(%23g)' stroke-width='1.2'/><path d='M0 238C62 206 112 136 182 104S276 68 300 8' stroke='url(%23g)' stroke-width='1.2'/></svg>") no-repeat bottom / 100% 100%;
+  pointer-events: none;
+}
+
+.sidebar__scroll,
+.sidebar__footer {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar__footer {
+  background: transparent;
+}

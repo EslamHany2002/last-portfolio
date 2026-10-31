@@ -32,6 +32,17 @@ export const profile = {
 export const hero = {
   primaryCta: { label: 'Get in Touch', href: 'mailto:eslamhanyriad@gmail.com' },
   secondaryCta: { label: 'View My Work', href: '#projects' },
+  visual: 'laptop.png', // assets/images/ — the laptop shown on the right of the Hero
+  disciplinesTitle: 'My Disciplines',
+  // `chip` is the short name on the floating cards; `label` is the full name in the bottom bar.
+  disciplines: [
+    { id: 'ai', chip: 'AI Engineering', label: 'AI Engineering Team Lead' },
+    { id: 'ecommerce', chip: 'E‑commerce', label: 'E-commerce Development' },
+    { id: 'automation', chip: 'Automation', label: 'AI Automation Workflows' },
+    { id: 'uiux', chip: 'UI/UX Design', label: 'UI/UX Design' },
+    { id: 'video', chip: 'Video Production', label: 'AI Video Production' },
+    { id: 'models', chip: 'AI Models', label: 'AI Model Development' },
+  ],
 };
 
 // Section headings and intros (shown under each section title).
@@ -202,7 +213,7 @@ export const services = [
 
 /*
  * group: work | volunteering | training | education (see sections.experience.groups).
- * logo: filename inside assets/logos/.
+ * logo: filename inside assets/logos/. `logos` (+ optional `logoJoin`) shows several logos side by side.
  * logoFit: 'cover' (square artwork) | 'contain' (wordmark) | 'mark' (icon at the start of a wordmark).
  * logoZoom: scales square artwork so the mark fills the tile.
  */
@@ -210,9 +221,12 @@ export const experience = [
   {
     group: 'work',
     company: 'MGH · Marketing Growth Hub',
-    logo: 'mgh.jpg',
-    logoFit: 'cover',
-    logoZoom: 1.6,
+    logos: [
+      { file: 'mgh.jpg', fit: 'cover', zoom: 1.6, alt: 'MGH logo' },
+      { file: 'nahj.png', fit: 'contain', alt: 'NAHJ logo' },
+      { file: 'mindset.png', fit: 'contain', alt: 'Mindset logo' },
+    ],
+    logoJoin: '+',
     location: null,
     current: true,
     roles: ['AI Engineering Team Lead'],
@@ -244,8 +258,11 @@ export const experience = [
   {
     group: 'work',
     company: 'AMIT Learning',
-    logo: 'amit.svg',
-    logoFit: 'contain',
+    logos: [
+      { file: 'amit.svg', fit: 'contain', alt: 'AMIT Learning logo' },
+      { file: 'depi.png', fit: 'contain', alt: 'DEPI (Digital Egypt Pioneers Initiative) logo' },
+    ],
+    logoJoin: '+',
     location: null,
     current: false,
     roles: ['Tech Support – DEPI Rounds 3, 4 & 5 (AI Track)'],
@@ -448,7 +465,7 @@ export const projects = [
   },
   {
     title: 'Sales CRM + WhatsApp Hub',
-    category: 'Cross-business',
+    category: 'CRM',
     context: 'In progress',
     role: 'Building and leading development with the team',
     description:
@@ -468,22 +485,22 @@ export const projects = [
     links: {},
   },
   {
-    title: 'E-commerce rebuild',
+    title: 'Safqqa',
     category: 'External client',
     context: 'In progress',
-    role: 'Project Manager, responsible for the overall project',
+    role: 'Project Manager — technical, marketing, filming and video, end to end',
     description:
-      'A ground-up rebuild of an e-commerce store on Shopify, with marketing and video work to follow. Website scope: project planning, sitemap, user flow, UI/UX workflow, Shopify implementation, products, payment gateways, reviews, final QA. Upcoming: advertising and product videos, reels, shooting and filming, creative direction.',
+      'A ground-up rebuild of the Safqqa e-commerce store on Shopify. I manage the whole project, not only the technical side: the website build, marketing, filming and video production, and the coordination between them. Website scope: project planning, sitemap, user flow, UI/UX workflow, Shopify implementation, products, payment gateways, reviews, final QA. Marketing and video workstreams: advertising and product videos, reels, shooting and filming, creative direction.',
     tags: [
-      'Project planning',
+      'Project management',
       'ClickUp setup and governance',
       'Task approval',
       'Daily team meeting',
       'Final QA and review',
-      'Website, marketing and video workstreams',
+      'Technical, marketing and filming workstreams',
     ],
     attribution:
-      'Done by me: planning, ClickUp setup and governance, task approval, the daily team meeting, final QA. Managed: the website, marketing and video workstreams and coordination across the project team. Done by the team: sitemap and user-flow diagrams, UI/UX, Shopify implementation, content plan, designs, video production. Products, payments and reviews are part of the scope I oversee; their hands-on setup isn’t claimed as my own work. The client isn’t named, and no unreleased screens or internal documents are shown.',
+      'Done by me: planning, ClickUp setup and governance, task approval, the daily team meeting, final QA. Managed: the website, marketing and video workstreams, filming, and coordination across the project team. Done by the team: sitemap and user-flow diagrams, UI/UX, Shopify implementation, content plan, designs, video production. Products, payments and reviews are part of the scope I oversee; their hands-on setup isn’t claimed as my own work. No unreleased screens or internal documents are shown.',
     image: null,
     links: {},
   },

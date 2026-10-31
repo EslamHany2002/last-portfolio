@@ -1,4 +1,4 @@
-import { Check, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useContent } from '../i18n/LanguageContext.jsx';
 import { navigation } from '../data/navigation.js';
 import { scrollToSection } from '../lib/scrollToSection.js';
@@ -18,9 +18,8 @@ function SidebarBlock({ title, children }) {
 }
 
 export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, closeButtonRef }) {
-  const { profile, personalInfo, languages, skillGroups, sidebarSkills, extraSkills, ui } = useContent();
+  const { profile, languages, skillGroups, sidebarSkills, ui } = useContent();
   const hidden = isDrawer && !isOpen;
-  const filledInfo = personalInfo.filter((item) => item.value);
   const allSkills = skillGroups.flatMap((group) => group.skills);
   const featuredSkills = sidebarSkills
     .map((name) => allSkills.find((skill) => skill.name === name))
@@ -83,21 +82,6 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
           </ul>
         </nav>
 
-        {filledInfo.length > 0 ? (
-          <SidebarBlock title={ui.info}>
-            <dl className="info-list">
-              {filledInfo.map(({ label, value }) => (
-                <div className="info-list__row" key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </SidebarBlock>
-        ) : (
-          <DevNote>Personal info (age, residence, location, availability) not provided yet</DevNote>
-        )}
-
         {languages.length > 0 && (
           <SidebarBlock title={ui.languages}>
             <ul className="info-list">
@@ -121,19 +105,6 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
             {featuredSkills.every((skill) => skill.level === null) && (
               <DevNote>No proficiency levels provided — bars stay hidden until you add them</DevNote>
             )}
-          </SidebarBlock>
-        )}
-
-        {extraSkills.length > 0 && (
-          <SidebarBlock title={ui.tools}>
-            <ul className="check-list">
-              {extraSkills.map((skill) => (
-                <li key={skill}>
-                  <Check size={14} strokeWidth={2.25} aria-hidden="true" />
-                  <span>{skill}</span>
-                </li>
-              ))}
-            </ul>
           </SidebarBlock>
         )}
       </div>

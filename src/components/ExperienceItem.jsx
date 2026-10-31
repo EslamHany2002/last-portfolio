@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { MapPin } from 'lucide-react';
 import { assetUrl } from '../lib/assets.js';
 import DevNote from './DevNote.jsx';
@@ -8,6 +9,8 @@ export default function ExperienceItem({
   logo,
   logoFit = 'contain',
   logoZoom = 1,
+  logos = [],
+  logoJoin = null,
   location,
   current,
   roles = [],
@@ -19,7 +22,11 @@ export default function ExperienceItem({
 }) {
   const missing = [roles.length === 0 && 'role'].filter(Boolean);
   const hasMeta = Boolean(dates || current);
-  const logoUrl = assetUrl(logo && `logos/${logo}`);
+  // `logos` shows several marks side by side (optionally joined by a symbol like "+");
+  // a single `logo` is the common case.
+  const marks = (logos.length > 0 ? logos : [{ file: logo, fit: logoFit, zoom: logoZoom }])
+    .map((mark) => ({ ...mark, url: assetUrl(mark.file && `logos/${mark.file}`) }))
+    .filter((mark) => mark.url);
 
   return (
     <li
@@ -35,9 +42,20 @@ export default function ExperienceItem({
       <article className="timeline__card">
         <header className="timeline__head">
           <div className="timeline__identity">
-            {logoUrl && (
-              <span className={`company-logo company-logo--${logoFit}`} style={{ '--logo-zoom': logoZoom }}>
-                <img src={logoUrl} alt={`${company} logo`} loading="lazy" decoding="async" />
+            {marks.length > 0 && (
+              <span className="company-logos">
+                {marks.map((mark, index) => (
+                  <Fragment key={mark.file}>
+                    {index > 0 && logoJoin && (
+                      <span className="company-logos__join" aria-hidden="true">
+                        {logoJoin}
+                      </span>
+                    )}
+                    <span className={`company-logo company-logo--${mark.fit ?? 'contain'}`} style={{ '--logo-zoom': mark.zoom ?? 1 }}>
+                      <img src={mark.url} alt={mark.alt ?? `${company} logo`} loading="lazy" decoding="async" />
+                    </span>
+                  </Fragment>
+                ))}
               </span>
             )}
             <h3 className="timeline__company">{company}</h3>
