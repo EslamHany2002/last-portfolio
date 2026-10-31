@@ -15,6 +15,7 @@ export default function ExperienceItem({
   description,
   responsibilities = [],
   technologies = [],
+  ui,
 }) {
   const missing = [roles.length === 0 && 'role'].filter(Boolean);
   const hasMeta = Boolean(dates || current);
@@ -28,7 +29,7 @@ export default function ExperienceItem({
     >
       <div className="timeline__meta">
         {dates && <p className="timeline__dates">{dates}</p>}
-        {current && <span className="badge">Current</span>}
+        {current && <span className="badge">{ui.current}</span>}
       </div>
 
       <article className="timeline__card">
@@ -66,7 +67,7 @@ export default function ExperienceItem({
         )}
 
         {technologies.length > 0 && (
-          <ul className="tag-list" aria-label="Technologies">
+          <ul className="tag-list" aria-label={ui.detailsLabel}>
             {technologies.map((tech) => (
               <li className="tag" key={tech}>
                 {tech}

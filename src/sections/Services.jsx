@@ -1,34 +1,25 @@
-import {
-  Clapperboard,
-  Layers,
-  Megaphone,
-  PenTool,
-  Presentation,
-  Smartphone,
-  Users,
-  Workflow,
-} from 'lucide-react';
-import { sections, services } from '../data/portfolio.js';
+import { ClipboardList, Globe, Layers, Package, Presentation, Users, Workflow } from 'lucide-react';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import { sectionEyebrow } from '../data/navigation.js';
 import SectionTitle from '../components/SectionTitle.jsx';
 import ServiceCard from '../components/ServiceCard.jsx';
 
 const SERVICE_ICONS = {
-  flutter: Smartphone,
-  'ai-marketing': Megaphone,
-  instructor: Presentation,
-  design: PenTool,
-  video: Clapperboard,
-  'ai-content': Workflow,
   leadership: Users,
+  products: Package,
+  websites: Globe,
+  systems: Workflow,
+  training: Presentation,
+  management: ClipboardList,
 };
 
 export default function Services() {
+  const { sections, services, ui } = useContent();
   return (
     <section id="services" className="section" aria-labelledby="services-title">
       <div className="container">
         <SectionTitle
-          eyebrow={sectionEyebrow('services')}
+          eyebrow={sectionEyebrow('services', ui.nav)}
           title={sections.services.title}
           description={sections.services.description}
           id="services-title"

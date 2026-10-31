@@ -1,37 +1,38 @@
 import { ArrowUpRight, MapPin } from 'lucide-react';
-import { contact, socials } from '../data/portfolio.js';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import { sectionEyebrow } from '../data/navigation.js';
 import { displayUrl, getSocialLinks } from '../lib/socials.js';
 import ContactForm from '../components/ContactForm.jsx';
 
 const external = { target: '_blank', rel: 'noopener noreferrer' };
 
-// Visible text for each link type.
-const VALUES = {
-  email: socials.email,
-  phone: socials.phone,
-  whatsapp: socials.phone ?? 'Chat on WhatsApp',
-  github: socials.github && displayUrl(socials.github),
-  linkedin: socials.linkedin && displayUrl(socials.linkedin),
-};
-
-const methods = [
-  ...getSocialLinks(socials).map(({ id, label, href, icon }) => ({
-    label,
-    value: VALUES[id],
-    href,
-    icon,
-    ...(href.startsWith('http') && external),
-  })),
-  contact.location && { label: 'Location', value: contact.location, icon: MapPin },
-].filter(Boolean);
-
 export default function Contact() {
+  const { contact, socials, ui } = useContent();
+  // Visible text for each link type.
+  const VALUES = {
+    email: socials.email,
+    phone: socials.phone,
+    whatsapp: socials.phone ?? 'Chat on WhatsApp',
+    github: socials.github && displayUrl(socials.github),
+    linkedin: socials.linkedin && displayUrl(socials.linkedin),
+  };
+
+  const methods = [
+    ...getSocialLinks(socials).map(({ id, label, href, icon }) => ({
+      label: id === 'email' ? ui.email : label,
+      value: VALUES[id],
+      href,
+      icon,
+      ...(href.startsWith('http') && external),
+    })),
+    contact.location && { label: ui.location ?? 'Location', value: contact.location, icon: MapPin },
+  ].filter(Boolean);
+
   return (
     <section id="contact" className="section contact" aria-labelledby="contact-title">
       <div className="container contact__inner">
         <div className="contact__intro reveal">
-          <p className="section-title__eyebrow">{sectionEyebrow('contact')}</p>
+          <p className="section-title__eyebrow">{sectionEyebrow('contact', ui.nav)}</p>
           <h2 className="contact__headline" id="contact-title">
             {contact.headline}
           </h2>

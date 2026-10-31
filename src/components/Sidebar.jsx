@@ -1,12 +1,5 @@
 import { Check, X } from 'lucide-react';
-import {
-  extraSkills,
-  languages,
-  personalInfo,
-  profile,
-  sidebarSkills,
-  skillGroups,
-} from '../data/portfolio.js';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import { navigation } from '../data/navigation.js';
 import { scrollToSection } from '../lib/scrollToSection.js';
 import Avatar from './Avatar.jsx';
@@ -14,12 +7,6 @@ import CvButton from './CvButton.jsx';
 import DevNote from './DevNote.jsx';
 import SkillBar from './SkillBar.jsx';
 import SocialLinks from './SocialLinks.jsx';
-
-const filledInfo = personalInfo.filter((item) => item.value);
-const allSkills = skillGroups.flatMap((group) => group.skills);
-const featuredSkills = sidebarSkills
-  .map((name) => allSkills.find((skill) => skill.name === name))
-  .filter(Boolean);
 
 function SidebarBlock({ title, children }) {
   return (
@@ -31,7 +18,13 @@ function SidebarBlock({ title, children }) {
 }
 
 export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, closeButtonRef }) {
+  const { profile, personalInfo, languages, skillGroups, sidebarSkills, extraSkills, ui } = useContent();
   const hidden = isDrawer && !isOpen;
+  const filledInfo = personalInfo.filter((item) => item.value);
+  const allSkills = skillGroups.flatMap((group) => group.skills);
+  const featuredSkills = sidebarSkills
+    .map((name) => allSkills.find((skill) => skill.name === name))
+    .filter(Boolean);
 
   // The drawer locks page scroll, so unlock it before scrolling, then close.
   const onDrawerNavClick = (event, sectionId) => {
@@ -45,7 +38,7 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
     <aside
       id={id}
       className={`sidebar ${isOpen ? 'is-open' : ''}`}
-      aria-label="Profile and navigation"
+      aria-label={ui.sidebarLabel}
       inert={hidden}
       {...(isDrawer && { role: 'dialog', 'aria-modal': isOpen })}
     >
@@ -55,7 +48,7 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
           type="button"
           className="sidebar__close icon-button"
           onClick={onClose}
-          aria-label="Close menu"
+          aria-label={ui.closeMenu}
         >
           <X size={20} strokeWidth={1.75} />
         </button>
@@ -69,9 +62,9 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
           <SocialLinks className="sidebar__socials" />
         </div>
 
-        <nav className="sidebar__nav" aria-label="Sections">
+        <nav className="sidebar__nav" aria-label={ui.sectionsLabel}>
           <ul>
-            {navigation.map(({ id: sectionId, label, icon: Icon }) => {
+            {navigation.map(({ id: sectionId, icon: Icon }) => {
               const isActive = sectionId === activeId;
               return (
                 <li key={sectionId}>
@@ -82,7 +75,7 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
                     onClick={isDrawer ? (event) => onDrawerNavClick(event, sectionId) : undefined}
                   >
                     <Icon className="nav-link__icon" size={17} strokeWidth={1.75} aria-hidden="true" />
-                    <span>{label}</span>
+                    <span>{ui.nav[sectionId]}</span>
                   </a>
                 </li>
               );
@@ -91,7 +84,7 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
         </nav>
 
         {filledInfo.length > 0 ? (
-          <SidebarBlock title="Info">
+          <SidebarBlock title={ui.info}>
             <dl className="info-list">
               {filledInfo.map(({ label, value }) => (
                 <div className="info-list__row" key={label}>
@@ -105,19 +98,21 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
           <DevNote>Personal info (age, residence, location, availability) not provided yet</DevNote>
         )}
 
-        <SidebarBlock title="Languages">
-          <ul className="info-list">
-            {languages.map(({ name, level }) => (
-              <li className="info-list__row" key={name}>
-                <span>{name}</span>
-                {level && <span className="info-list__muted">{level}</span>}
-              </li>
-            ))}
-          </ul>
-        </SidebarBlock>
+        {languages.length > 0 && (
+          <SidebarBlock title={ui.languages}>
+            <ul className="info-list">
+              {languages.map(({ name, level }) => (
+                <li className="info-list__row" key={name}>
+                  <span>{name}</span>
+                  {level && <span className="info-list__muted">{level}</span>}
+                </li>
+              ))}
+            </ul>
+          </SidebarBlock>
+        )}
 
         {featuredSkills.length > 0 && (
-          <SidebarBlock title="Skills">
+          <SidebarBlock title={ui.nav.skills}>
             <div className="skill-list">
               {featuredSkills.map((skill) => (
                 <SkillBar key={skill.name} {...skill} />
@@ -130,7 +125,7 @@ export default function Sidebar({ id, activeId, isDrawer, isOpen, onClose, close
         )}
 
         {extraSkills.length > 0 && (
-          <SidebarBlock title="Extra Skills">
+          <SidebarBlock title={ui.tools}>
             <ul className="check-list">
               {extraSkills.map((skill) => (
                 <li key={skill}>

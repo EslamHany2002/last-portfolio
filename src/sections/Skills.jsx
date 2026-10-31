@@ -1,5 +1,5 @@
 import { Code, GraduationCap, HeartHandshake, Layers, Megaphone, PenTool, Sparkles, Wrench } from 'lucide-react';
-import { extraSkills, sections, skillGroups } from '../data/portfolio.js';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import { sectionEyebrow } from '../data/navigation.js';
 import SectionTitle from '../components/SectionTitle.jsx';
 import SkillBar from '../components/SkillBar.jsx';
@@ -26,11 +26,12 @@ function SkillTag({ name, large = false }) {
 }
 
 export default function Skills() {
+  const { extraSkills, sections, skillGroups, ui } = useContent();
   return (
     <section id="skills" className="section" aria-labelledby="skills-title">
       <div className="container">
         <SectionTitle
-          eyebrow={sectionEyebrow('skills')}
+          eyebrow={sectionEyebrow('skills', ui.nav)}
           title={sections.skills.title}
           description={sections.skills.description}
           id="skills-title"
@@ -75,7 +76,7 @@ export default function Skills() {
           <div className="tools reveal">
             <p className="tools__label">
               <Wrench size={15} strokeWidth={1.75} aria-hidden="true" />
-              Tools
+              {ui.tools}
             </p>
             <ul className="tag-list">
               {extraSkills.map((tool) => (

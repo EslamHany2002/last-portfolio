@@ -1,16 +1,15 @@
 import { Fragment } from 'react';
 import { ArrowDown, ArrowRight, Send } from 'lucide-react';
-import { hero, profile } from '../data/portfolio.js';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import { assetUrl } from '../lib/assets.js';
 import Button from '../components/Button.jsx';
 import DevNote from '../components/DevNote.jsx';
 
 const external = { target: '_blank', rel: 'noopener noreferrer' };
-const photoUrl = assetUrl(profile.heroPhoto && `images/${profile.heroPhoto}`);
-const supportingRoles = profile.roles.filter((role) => role !== profile.primaryRole);
 
 // Without a real photo the visual side lists the disciplines instead of a stand-in image.
-function HeroVisual() {
+function HeroVisual({ profile, ui }) {
+  const photoUrl = assetUrl(profile.heroPhoto && `images/${profile.heroPhoto}`);
   if (photoUrl) {
     return (
       <figure className="hero__photo">
@@ -22,7 +21,7 @@ function HeroVisual() {
   return (
     <div className="hero__panel">
       <div className="hero__panel-head">
-        <p className="hero__panel-label">Disciplines</p>
+        <p className="hero__panel-label">{ui.disciplines}</p>
         <span className="hero__panel-count" aria-hidden="true">
           {String(profile.roles.length).padStart(2, '0')}
         </span>
@@ -40,6 +39,8 @@ function HeroVisual() {
 }
 
 export default function Hero() {
+  const { hero, profile, ui } = useContent();
+  const supportingRoles = profile.roles.filter((role) => role !== profile.primaryRole);
   return (
     <section id="home" className="section hero" aria-labelledby="home-title">
       <div className="container hero__inner">
@@ -78,11 +79,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <HeroVisual />
+        <HeroVisual profile={profile} ui={ui} />
       </div>
 
       <a href="#about" className="hero__scroll">
-        <span>Scroll</span>
+        <span>{ui.scroll}</span>
         <ArrowDown size={14} strokeWidth={1.75} aria-hidden="true" />
       </a>
     </section>

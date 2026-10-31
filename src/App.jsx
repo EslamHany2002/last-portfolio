@@ -5,11 +5,10 @@ import { sectionIds } from './data/navigation.js';
 import { useActiveSection } from './hooks/useActiveSection.js';
 import { useMediaQuery } from './hooks/useMediaQuery.js';
 import { useReveal } from './hooks/useReveal.js';
+import { useContent } from './i18n/LanguageContext.jsx';
 import { scrollToSection } from './lib/scrollToSection.js';
 import About from './sections/About.jsx';
-import Achievements from './sections/Achievements.jsx';
 import Contact from './sections/Contact.jsx';
-import CreativeWork from './sections/CreativeWork.jsx';
 import Experience from './sections/Experience.jsx';
 import Footer from './sections/Footer.jsx';
 import Hero from './sections/Hero.jsx';
@@ -27,6 +26,7 @@ function App() {
   const menuButtonRef = useRef(null);
   const closeButtonRef = useRef(null);
   useReveal();
+  const { ui } = useContent();
 
   const closeMenu = useCallback(() => {
     setMenuOpen(false);
@@ -71,7 +71,7 @@ function App() {
   return (
     <div className="app">
       <a href="#main" className="skip-link">
-        Skip to content
+        {ui.skip}
       </a>
 
       {isDrawer && (
@@ -106,9 +106,7 @@ function App() {
           <Experience />
           <Skills />
           <Projects />
-          <CreativeWork />
           <Teaching />
-          <Achievements />
           <Contact />
         </main>
         <Footer />

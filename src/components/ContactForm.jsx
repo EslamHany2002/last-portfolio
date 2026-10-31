@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Loader2, Send } from 'lucide-react';
-import { socials } from '../data/portfolio.js';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import Button from './Button.jsx';
 
 /*
@@ -15,23 +15,24 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const EMPTY = { name: '', email: '', subject: '', message: '' };
 
-const MESSAGES = {
-  success: "Message sent successfully. I'll get back to you soon.",
-  error: `Sorry, your message couldn't be sent. Please try again, or email me directly at ${socials.email}.`,
-  unconfigured: `The contact form is unavailable right now. Please email me directly at ${socials.email}.`,
-  idle: 'Your message goes straight to my inbox.',
-};
-
-function validate(values) {
+function validate(values, f) {
   const errors = {};
-  if (values.name.trim().length < 2) errors.name = 'Please enter your name.';
-  if (!values.email.trim()) errors.email = 'Please enter your email address.';
-  else if (!EMAIL_PATTERN.test(values.email.trim())) errors.email = 'Please enter a valid email address.';
-  if (values.message.trim().length < 10) errors.message = 'Please write a message of at least 10 characters.';
+  if (values.name.trim().length < 2) errors.name = f.errName;
+  if (!values.email.trim()) errors.email = f.errEmailEmpty;
+  else if (!EMAIL_PATTERN.test(values.email.trim())) errors.email = f.errEmailInvalid;
+  if (values.message.trim().length < 10) errors.message = f.errMessage;
   return errors;
 }
 
 export default function ContactForm() {
+  const { socials, ui } = useContent();
+  const f = ui.form;
+  const MESSAGES = {
+    success: f.success,
+    error: `${f.error} ${socials.email}.`,
+    unconfigured: `${f.unconfigured} ${socials.email}.`,
+    idle: f.idle,
+  };
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(ACCESS_KEY ? 'idle' : 'unconfigured');
@@ -49,7 +50,7 @@ export default function ContactForm() {
     event.preventDefault();
     if (submitting.current || !ACCESS_KEY) return; // blocks double submits
 
-    const found = validate(values);
+    const found = validate(values, f);
     setErrors(found);
     if (Object.keys(found).length > 0) {
       formRef.current?.querySelector(`[name="${Object.keys(found)[0]}"]`)?.focus();
@@ -66,7 +67,7 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: ACCESS_KEY,
-          subject: values.subject.trim() || `New portfolio message from ${values.name.trim()}`,
+          subject: values.subject.trim() || `${f.defaultSubject} ${values.name.trim()}`,
           from_name: 'Portfolio contact form',
           name: values.name.trim(),
           email: values.email.trim(),
@@ -113,14 +114,14 @@ export default function ContactForm() {
       <div className="contact-form__row">
         <div className="field">
           <label className="field__label" htmlFor="cf-name">
-            Name
+            {f.name}
           </label>
           <input className="field__input" type="text" autoComplete="name" required {...fieldProps('name')} />
           {fieldError('name')}
         </div>
         <div className="field">
           <label className="field__label" htmlFor="cf-email">
-            Email
+            {f.email}
           </label>
           <input className="field__input" type="email" autoComplete="email" required {...fieldProps('email')} />
           {fieldError('email')}
@@ -128,13 +129,13 @@ export default function ContactForm() {
       </div>
       <div className="field">
         <label className="field__label" htmlFor="cf-subject">
-          Subject <span className="field__optional">(optional)</span>
+          {f.subject} <span className="field__optional">{f.optional}</span>
         </label>
         <input className="field__input" type="text" {...fieldProps('subject')} />
       </div>
       <div className="field">
         <label className="field__label" htmlFor="cf-message">
-          Message
+          {f.message}
         </label>
         <textarea className="field__input field__input--area" rows="5" required {...fieldProps('message')} />
         {fieldError('message')}
@@ -148,14 +149,14 @@ export default function ContactForm() {
           className={loading ? 'is-loading' : ''}
           disabled={loading || status === 'unconfigured'}
         >
-          {loading ? 'Sending…' : 'Send Message'}
+          {loading ? f.sending : f.send}
         </Button>
         <p
           className={`contact-form__hint ${status === 'success' ? 'is-success' : ''} ${status === 'error' || status === 'unconfigured' ? 'is-error' : ''}`}
           role={status === 'error' ? 'alert' : 'status'}
           aria-live="polite"
         >
-          {loading ? 'Sending your message…' : MESSAGES[status]}
+          {loading ? f.sendingHint : MESSAGES[status]}
         </p>
       </div>
     </form>

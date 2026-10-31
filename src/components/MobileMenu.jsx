@@ -1,9 +1,10 @@
 import { Menu } from 'lucide-react';
-import { profile } from '../data/portfolio.js';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import Avatar from './Avatar.jsx';
 
 // Top bar shown below the desktop breakpoint; opens the sidebar as a drawer.
 export default function MobileMenu({ isOpen, onOpen, menuButtonRef, controlsId }) {
+  const { profile, ui } = useContent();
   return (
     <header className="topbar">
       <a href="#home" className="topbar__brand">
@@ -18,7 +19,7 @@ export default function MobileMenu({ isOpen, onOpen, menuButtonRef, controlsId }
         type="button"
         className="icon-button"
         onClick={onOpen}
-        aria-label="Open menu"
+        aria-label={ui.openMenu}
         aria-expanded={isOpen}
         aria-controls={controlsId}
       >

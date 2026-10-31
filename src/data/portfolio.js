@@ -1,6 +1,5 @@
 /*
  * Central content file for the portfolio.
- * Source of truth: assets/cv/Eslam_Mohamed_2026_Updated.pdf
  *
  * Rules:
  * - Components only read from this file — edit content here, never in the UI.
@@ -9,27 +8,29 @@
  */
 
 export const profile = {
-  name: 'Islam Mohamed Hassan',
-  shortName: 'Islam Mohamed',
-  greeting: "Hello, I'm Islam Mohamed",
-  primaryRole: 'Flutter Developer / AI & Digital Marketing Specialist',
+  name: 'Eslam Hany Mohamed',
+  shortName: 'Eslam Hany',
+  initials: 'EH',
+  greeting: 'AI Engineering Team Lead · MGH',
+  primaryRole: 'AI Engineering Team Lead',
+  // Shown in the Hero "Disciplines" panel — the areas the team covers.
   roles: [
-    'Flutter Developer',
-    'AI for Marketing',
-    'Flutter Instructor',
-    'Designer',
-    'Video Editor',
-    'Team Leader',
+    'AI Engineering Team Lead',
+    'E-commerce website development',
+    'AI automation workflows',
+    'UI/UX',
+    'AI video production',
+    'AI model development',
   ],
   summary:
-    'I work at the intersection of software development, AI, digital marketing and creative content — building scalable, performance-focused mobile apps with Firebase and REST APIs, and using AI-powered workflows to create marketing videos, designs and campaign content.',
-  photo: 'profile.jpeg', // assets/images/ — sidebar, mobile top bar
+    'I lead AI engineering and build with my teams across three businesses: websites, digital products, business systems and training programs. Working across MGH, NAHJ and Mindset, alongside external client projects.',
+  photo: 'me.jpeg', // assets/images/ — sidebar, mobile top bar (initials shown while null)
   heroPhoto: null, // assets/images/ — set to replace the Hero "Disciplines" panel with a photo
 };
 
 // Hero call-to-action buttons.
 export const hero = {
-  primaryCta: { label: 'Hire Me', href: 'https://wa.me/201210204180' },
+  primaryCta: { label: 'Get in Touch', href: 'mailto:eslamhanyriad@gmail.com' },
   secondaryCta: { label: 'View My Work', href: '#projects' },
 };
 
@@ -37,576 +38,507 @@ export const hero = {
 export const sections = {
   about: { title: 'About Me' },
   services: {
-    title: 'What I Do',
-    description: 'Development, AI-powered marketing, design and training — under one roof.',
+    title: 'How I Work',
+    description: 'Six areas of work, each backed by something I have actually done.',
   },
   experience: {
     title: 'Experience',
-    description: 'Marketing with AI on one side, Flutter engineering and teaching on the other.',
+    description: 'From AI instruction and tech support to leading AI engineering across the group.',
+    // Order shown on the page; each experience item sets `group` to one of these ids.
+    groups: [
+      { id: 'work', title: 'Work Experience' },
+      { id: 'volunteering', title: 'Volunteering' },
+      { id: 'training', title: 'Training & Internships' },
+      { id: 'education', title: 'Education' },
+    ],
   },
   skills: {
-    title: 'Skills & Expertise',
-    description: 'Bars indicate relative focus across my skill set — not measured scores.',
+    title: 'Skills & Tools',
+    description: null,
   },
   projects: {
-    title: 'Featured Projects',
-    description: 'Flutter applications — from polished product showcases to AI-powered systems.',
-    moreTitle: 'More Projects',
-  },
-  creative: {
-    title: 'Creative Work',
-    description: 'Design, video and AI-assisted marketing — the creative side of my work.',
-  },
-  achievements: {
-    title: 'Achievements',
-    description: 'Recognition for my graduation project.',
+    title: 'Projects',
+    description: 'Team work is credited as team work — each project states my part in it.',
+    moreTitle: 'Earlier Apps',
   },
   teaching: {
-    title: 'Teaching & Mentoring',
+    title: 'Training & Educational Products',
     description: null,
   },
 };
 
 export const about = {
-  image: 'profile.jpeg', // filename inside assets/images/
+  image: 'me.jpeg', // filename inside assets/images/
   intro:
-    'I’m a Flutter Developer and AI & Digital Marketing Specialist. I build mobile applications with clean, scalable architecture, and I use AI-powered workflows to market programs and produce videos, designs and campaign content. I also train and mentor Flutter developers and collaborate closely with cross-functional teams.',
+    'The team covers several disciplines. My part is leadership and technical direction across them; I don’t personally execute every specialization. My official title is at MGH, but the work runs across three businesses under the same ownership and management. They are the group I work within, not clients.',
+  teamAreasTitle: 'Team areas',
+  teamAreas: [
+    'E-commerce website development',
+    'AI automation workflows',
+    'UI/UX',
+    'AI video production',
+    'AI model development',
+  ],
+  // One role, three businesses (+ external client work).
   facets: [
     {
-      id: 'development',
-      title: 'Software Development',
-      text: 'Mobile apps built with Flutter, Firebase, Supabase, REST APIs and local databases, following scalable architecture and industry-standard practices.',
+      id: 'mgh',
+      title: 'MGH · Marketing Growth Hub',
+      text: 'Technology, AI, engineering and business systems.',
     },
     {
-      id: 'creative',
-      title: 'AI & Digital Marketing',
-      text: 'Promoting educational and professional programs with AI-powered tools — from video concepts and scripts to prompts and creative assets.',
+      id: 'nahj',
+      title: 'NAHJ for Consultation & Training',
+      text: 'Consultation, training, digital products and Skill Atlas.',
     },
     {
-      id: 'teaching',
-      title: 'Teaching & Mentoring',
-      text: 'Flutter instructor at AMIT Learning and technical mentor for DEPI Round 3 — code reviews, architecture guidance and debugging support.',
+      id: 'mindset',
+      title: 'Mindset',
+      text: 'Training, curricula, workshops, courses and educational products.',
     },
     {
-      id: 'content',
-      title: 'Creative Content',
-      text: 'Marketing videos, promotional content and visual designs for digital campaigns, combined with UI/UX design for products.',
+      id: 'external',
+      title: 'External client work',
+      text: 'Client projects, kept separate from the group and credited by role.',
     },
   ],
   stats: [], // add real numbers only, e.g. { value: '3', label: '…' }
   education: {
-    degree: 'Bachelor of Information Systems',
-    institution: 'Higher Institute of Advanced Studies',
-    location: 'Giza, Egypt',
-    note: 'Expected graduation: 2024',
-    coursework: [
-      'Java Programming',
-      'Object-Oriented Programming',
-      'Database Systems',
-      'Data Structures & Algorithms',
-      'System Analysis',
-    ],
+    degree: 'B.Sc. Computers & Artificial Intelligence, minor in Computer Science',
+    institution: 'Modern University for Technology and Information',
+    location: null,
+    note: '2020 – 2024 · GPA 3.24',
+    coursework: [],
   },
 };
 
 // Shown in the sidebar Info block.
-export const personalInfo = [
-  { label: 'Location', value: 'Giza, Egypt' },
-  { label: 'Phone', value: '+201210204180' },
-  { label: 'Email', value: 'eslammoh369@gmail.com' },
-];
+export const personalInfo = [{ label: 'Email', value: 'eslamhanyriad@gmail.com' }];
 
-export const languages = [
-  { name: 'Arabic', level: 'Native' },
-  { name: 'English', level: 'Intermediate' },
-];
+export const languages = [];
 
 export const socials = {
-  github: 'https://github.com/esllamesso',
-  linkedin: 'https://www.linkedin.com/in/eslam-mohamed-9ba442297/',
-  email: 'eslammoh369@gmail.com',
-  phone: '+201210204180',
-  whatsapp: 'https://wa.me/201210204180',
+  github: 'https://github.com/EslamHany2002',
+  linkedin: 'https://www.linkedin.com/in/eslam-hany/',
+  email: 'eslamhanyriad@gmail.com',
+  phone: null,
+  whatsapp: null,
 };
 
 export const cv = {
-  file: 'Eslam_Mohamed_2026_Updated.pdf', // inside assets/cv/
+  file: 'Eslam_Hany_Mohamed_CV.pdf', // inside assets/cv/
 };
 
 /*
  * Skills
- * `level` (0–100) only sets the bar length as a visual guide to relative focus —
- * it is not a measured score, and no percentage is displayed.
- * `label` replaces the bar caption where the CV states a level (e.g. Beginner).
- * `tags` are listed as chips inside the card.
+ * `skills` render as bars (`level` 0–100 is a visual guide only); `tags` render as chips.
  * `id` selects the icon: development | ai | creative | soft
  */
 export const skillGroups = [
   {
-    id: 'development',
-    title: 'Development',
-    skills: [
-      { name: 'Flutter', level: 92 },
-      { name: 'Dart', level: 90 },
-      { name: 'Firebase', level: 84 },
-      { name: 'Supabase', level: 72 },
-      { name: 'REST APIs', level: 84 },
-      { name: 'BLoC / Cubit', level: 82 },
-      { name: 'Responsive UI', level: 84 },
-      { name: 'Clean Architecture', level: 78 },
-      { name: 'Java', level: 30, label: 'Beginner' },
-      { name: 'Kotlin', level: 30, label: 'Beginner' },
-    ],
-    tags: [
-      'C#',
-      'HTML',
-      'Android SDK',
-      'Flutter SDK',
-      'Custom Widgets',
-      'MVC',
-      'Dio',
-      'Localization',
-      'Google Fonts',
-      'Lottie',
-      'Git',
-      'GitHub',
-      'Flutter DevTools',
-    ],
-  },
-  {
     id: 'ai',
-    title: 'AI & Marketing',
-    skills: [
-      { name: 'AI for Marketing', level: 86 },
-      { name: 'AI-Powered Content Creation', level: 86 },
-      { name: 'AI Marketing Workflows', level: 82 },
-      { name: 'Digital Marketing', level: 80 },
-      { name: 'Social Media Content Creation', level: 80 },
-      { name: 'Marketing Automation', level: 72 },
-    ],
-    tags: ['Claude', 'Prompt Engineering', 'Prompt Creation', 'AI Workflow Design', 'AI-Assisted Content Production'],
-  },
-  {
-    id: 'creative',
-    title: 'Creative & Design',
-    skills: [
-      { name: 'UI/UX Design', level: 82 },
-      { name: 'Video Creation', level: 82 },
-      { name: 'Video Editing', level: 82 },
-      { name: 'Graphic Design', level: 78 },
-      { name: 'Marketing Design', level: 80 },
-      { name: 'Creative Content', level: 82 },
-    ],
-  },
-  {
-    id: 'soft',
-    title: 'Soft Skills',
+    title: 'AI & Machine Learning',
     skills: [],
     tags: [
-      'Time Management & Responsibility',
-      'Communication & Teamwork',
-      'Pressure & Adaptability',
-      'Willingness to Learn',
-      'Attention to Detail',
-      'Thinking & Problem Solving',
-      'Fast Learning / Adaptability',
+      'Machine learning algorithms',
+      'Deep learning',
+      'Computer vision',
+      'Data preprocessing & feature engineering',
+      'TensorFlow',
+      'Keras',
+      'OpenCV',
+      'Scikit-learn',
+      'NumPy',
+      'Pandas',
     ],
+  },
+  {
+    id: 'development',
+    title: 'Programming & Development',
+    skills: [],
+    tags: ['Python', 'C++', 'Flutter', 'Dart', 'Firebase', 'Git', 'Flask', 'HTML', 'CSS', 'JavaScript'],
   },
 ];
 
 // Short list shown in the sidebar (names must match entries in skillGroups).
-export const sidebarSkills = ['Flutter', 'Dart', 'Firebase', 'REST APIs'];
+export const sidebarSkills = [];
 
-// Technical tools — sidebar checklist and the "Tools" row in Skills.
-export const extraSkills = ['Android Studio', 'VS Code', 'Figma', 'Canva', 'Excel', 'Postman', 'Google Workspace'];
+// Tools used on current projects — sidebar checklist and the "Tools" row in Skills.
+export const extraSkills = ['ClickUp', 'Shopify'];
 
 // `id` selects the icon.
 export const services = [
   {
-    id: 'flutter',
-    title: 'Flutter Development',
-    description:
-      'Building scalable and performance-focused mobile applications using Flutter, Firebase, Supabase, REST APIs and local databases.',
+    id: 'leadership',
+    title: 'AI engineering and technical leadership',
+    description: 'Leading a multidisciplinary AI engineering team and setting its technical direction.',
   },
   {
-    id: 'ai-marketing',
-    title: 'AI for Marketing',
-    description:
-      'Using AI-powered workflows and tools to support marketing campaigns, educational programs and digital products.',
+    id: 'products',
+    title: 'Digital products',
+    description: 'Taking a product from concept to a live platform, with the team.',
   },
   {
-    id: 'instructor',
-    title: 'Flutter Instructor',
-    description: 'Delivering Flutter training and guiding learners through real-world application development.',
+    id: 'websites',
+    title: 'Websites and deployment',
+    description: 'Building and deploying company websites with the team.',
   },
   {
-    id: 'design',
-    title: 'UI/UX & Graphic Design',
-    description: 'Creating modern interfaces and visual designs for digital products and marketing campaigns.',
+    id: 'systems',
+    title: 'Business systems',
+    description: 'Building a sales system for the group. Still in development.',
   },
   {
-    id: 'video',
-    title: 'Video Creation & Editing',
-    description:
-      'Creating marketing videos, promotional content, video concepts and creative assets for social media campaigns.',
+    id: 'training',
+    title: 'Training and educational products',
+    description: 'Developing curricula, courses, workshops and training materials.',
   },
   {
-    id: 'ai-content',
-    title: 'AI Content & Marketing Workflows',
-    description:
-      'Creating prompts, scripts, creative concepts and AI-assisted workflows that streamline marketing production.',
+    id: 'management',
+    title: 'Project management and execution',
+    description: 'Planning, governing and coordinating a client project with several workstreams.',
   },
 ];
 
 /*
- * Dates and locations are not in the CV, so they are left empty (hidden).
+ * group: work | volunteering | training | education (see sections.experience.groups).
  * logo: filename inside assets/logos/.
- * logoFit: 'cover' (square artwork) | 'contain' (wordmark) | 'mark' (shows the icon at the start of a wordmark).
+ * logoFit: 'cover' (square artwork) | 'contain' (wordmark) | 'mark' (icon at the start of a wordmark).
  * logoZoom: scales square artwork so the mark fills the tile.
  */
 export const experience = [
   {
-    company: 'MGH Consultancy',
+    group: 'work',
+    company: 'MGH · Marketing Growth Hub',
     logo: 'mgh.jpg',
     logoFit: 'cover',
     logoZoom: 1.6,
     location: null,
     current: true,
-    roles: ['AI & Digital Marketing Specialist / Consultant'],
-    dates: null,
-    description: null,
-    responsibilities: [
-      'Market and promote educational and professional programs using AI-powered tools and workflows.',
-      'Create marketing videos, promotional content and visual designs for digital campaigns.',
-      'Develop video concepts, scripts, prompts and creative assets for social media and online campaigns.',
-      'Support engaging digital campaigns for courses, programs and educational products.',
-      'Combine AI, content creation, design and digital marketing to streamline marketing production.',
-    ],
-    technologies: ['AI-Powered Workflows', 'Video Creation', 'Visual Design', 'Digital Marketing'],
+    roles: ['AI Engineering Team Lead'],
+    dates: 'Sep 2026 – present',
+    description:
+      'The official role at MGH: leadership and technical direction across e-commerce development, AI automation, UI/UX, AI video and AI model work.',
+    responsibilities: [],
+    technologies: [],
   },
   {
+    group: 'work',
     company: 'AMIT Learning',
     logo: 'amit.svg',
     logoFit: 'contain',
     location: null,
     current: false,
-    roles: ['Technical & Instructor Flutter', 'Technical Mentor — DEPI Round 3'],
-    dates: null,
-    description: null,
+    roles: ['Senior Tech Support'],
+    dates: 'Dec 2025 – Aug 2026',
+    description:
+      'Promoted to Senior Tech Support to lead technical operations and support AI-related systems and workflows.',
     responsibilities: [
-      'Built and maintained mobile applications using Flutter, Firebase, Supabase, REST APIs and local databases.',
-      'Provided technical evaluation and architectural guidance for real-world software systems.',
-      'Mentored Flutter students during DEPI Round 3.',
-      'Reviewed student assignments and codebases.',
-      'Identified architectural and technical issues.',
-      'Delivered Flutter training sessions.',
-      'Guided students through real-world Flutter and Firebase applications.',
-      'Provided feedback on code quality, architecture, maintainability and performance.',
-      'Helped students implement state management, API integration, local storage, Firebase, responsive UI and clean architecture.',
-      'Debugged complex issues and optimized application performance and UX.',
-      'Worked with production-ready Flutter applications.',
+      'Leading a small tech support team and coordinating daily technical operations',
+      'Supporting AI tools, platforms, and system performance',
+      'Contributing to improving technical workflows and support processes',
+      'Mentoring junior team members and enhancing team productivity',
     ],
-    technologies: ['Flutter', 'Firebase', 'Supabase', 'REST APIs', 'Local Databases'],
+    technologies: [],
   },
   {
-    company: 'Freelance',
-    logo: 'freelancer.svg',
-    logoFit: 'mark', // wordmark file: frame its leading icon
+    group: 'work',
+    company: 'AMIT Learning',
+    logo: 'amit.svg',
+    logoFit: 'contain',
     location: null,
     current: false,
-    roles: ['Flutter Developer'],
-    dates: null,
+    roles: ['Tech Support – DEPI Rounds 3, 4 & 5 (AI Track)'],
+    dates: 'Oct 2025 – Aug 2026',
+    description:
+      'Providing technical and educational support in a large-scale AI learning environment as part of the Digital Egypt Pioneers Initiative (DEPI).',
+    responsibilities: [
+      'Supporting 30+ student groups across AI tracks',
+      'Assisting instructors in delivering AI content and preparing technical materials',
+      'Guiding students in understanding Machine Learning and Deep Learning concepts',
+      'Troubleshooting technical issues related to AI tools, environments, and projects',
+      'Supporting students in building and completing real-world AI graduation projects',
+    ],
+    technologies: ['30+ student groups supported'],
+  },
+  {
+    group: 'work',
+    company: 'AMIT Learning',
+    logo: 'amit.svg',
+    logoFit: 'contain',
+    location: null,
+    current: false,
+    roles: ['AI Tech Support'],
+    dates: 'Jun 2025 – Dec 2025',
     description: null,
     responsibilities: [
-      'Built and delivered production-ready mobile applications from client and student requirements.',
+      'Coordinate with instructors in both B2C and B2B tracks to ensure session materials are prepared and aligned with learning objectives.',
+      'Provide real-time support during live sessions by assisting instructors and helping students troubleshoot technical issues or clarify concepts.',
+      'Review, grade, and provide detailed feedback on students’ assignments and quizzes.',
+      'Offer continuous support to students outside session hours by resolving technical challenges and explaining difficult topics.',
+      'Evaluate and discuss students’ graduation projects, assessing technical quality and providing constructive feedback.',
     ],
-    technologies: ['Flutter'],
+    technologies: [],
+  },
+  {
+    group: 'training',
+    company: 'AMIT',
+    logo: 'amit.svg',
+    logoFit: 'contain',
+    location: null,
+    current: false,
+    roles: ['Machine Learning and AI Diploma'],
+    dates: '28 Jul 2024 – 1 Jun 2025',
+    description: null,
+    responsibilities: [],
+    technologies: [],
+  },
+  {
+    group: 'volunteering',
+    company: 'YLY, Ministry of Youth and Sports',
+    logo: 'yly.jpg',
+    logoFit: 'cover',
+    location: null,
+    current: false,
+    roles: ['Leader of the Coordination Team'],
+    dates: 'Jul 2023 – Jun 2024',
+    description: null,
+    responsibilities: [],
+    technologies: [],
+  },
+  {
+    group: 'volunteering',
+    company: 'YLY, Ministry of Youth and Sports',
+    logo: 'yly.jpg',
+    logoFit: 'cover',
+    location: null,
+    current: false,
+    roles: ['Operation Member'],
+    dates: 'Aug 2022 – Jul 2023',
+    description: null,
+    responsibilities: [],
+    technologies: [],
+  },
+
+  {
+    group: 'training',
+    company: 'Arab African International Bank',
+    logo: 'aaib.png',
+    logoFit: 'contain',
+    location: null,
+    current: false,
+    roles: ['Internship'],
+    dates: '17 Jul 2022 – 11 Aug 2022',
+    description: 'One month covering the basics of every department in the bank.',
+    responsibilities: [],
+    technologies: [],
+  },
+  {
+    group: 'training',
+    company: 'RMS Services',
+    logo: 'rms.png',
+    logoFit: 'contain',
+    location: null,
+    current: false,
+    roles: ['Flutter app development with Dart'],
+    dates: '2022',
+    description: '4 months.',
+    responsibilities: [],
+    technologies: [],
+  },
+  {
+    group: 'training',
+    company: 'Banque Misr',
+    logo: 'banque-misr.jpg',
+    logoFit: 'contain',
+    location: null,
+    current: false,
+    roles: ['Internship'],
+    dates: 'Jul 2021 – Aug 2021',
+    description:
+      'Rowad Program (entrepreneurship and career development), customer service, communication, CV writing, the bank’s core values, and personal loan and mortgage products.',
+    responsibilities: [],
+    technologies: [],
+  },
+  {
+    group: 'education',
+    company: 'Modern University for Technology and Information',
+    logo: 'mti.jpg',
+    logoFit: 'contain',
+    location: null,
+    current: false,
+    roles: ['B.Sc. Computers & Artificial Intelligence, minor in Computer Science'],
+    dates: '2020 – 2024',
+    description: 'GPA 3.24',
+    responsibilities: [],
+    technologies: [],
   },
 ];
 
 /*
  * Projects
- * category: badge on the image. context: small label in the meta row.
- * tags: chips. image: filename inside assets/projects/ — projects with an image appear in the
- * showcase grid; projects without one appear as compact cards under "More Projects".
- * links: only real URLs (none are listed in the CV yet).
- * highlight: true = large card. layout: 'wide' = full-width card for landscape screenshots.
- * featured: false = not shown.
+ * category: badge. context: status label in the meta row. role: my role, shown in the meta row.
+ * tags: chips. attribution: note on who did what. image: filename inside assets/projects/ —
+ * projects with an image appear in the showcase grid; the rest appear as compact cards.
+ * links: only real URLs. featured: false = not shown.
  */
 export const projects = [
-  // Showcase projects with real screenshots (assets/projects/). No public links.
   {
-    title: "IS' Feeds",
-    category: 'Flutter',
-    highlight: true,
+    title: 'mgh-ae.com',
+    category: 'MGH',
+    context: 'Deployed',
+    role: 'Development, technical implementation and deployment, with the team',
     description:
-      'A modern social feed application built with Flutter, focused on sharing content, discovering posts, and connecting users through an interactive social experience.',
-    tags: ['Flutter', 'Dart', 'Social Feed', 'Content Sharing'],
-    image: 'is-feed.png',
-    links: {},
+      'The MGH website — technology, AI, engineering and business systems. Built and deployed with the team since Sep 2026.',
+    tags: ['Website development', 'Technical implementation', 'Deployment to hosting', 'Collaboration with the team'],
+    attribution:
+      'All three group sites were team efforts. The tags above are my part of that work; none of the sites is presented as solo work.',
+    image: null,
+    links: { live: 'https://mgh-ae.com/' },
   },
   {
-    title: 'DocDoc',
-    category: 'Flutter',
+    title: 'nahjqatar.com',
+    category: 'NAHJ',
+    context: 'Deployed',
+    role: 'Development, technical implementation and deployment, with the team',
     description:
-      'A healthcare and doctor appointment application that helps users discover medical specialties, find doctors, book appointments, and manage their healthcare experience.',
-    tags: ['Flutter', 'Dart', 'Doctor Search', 'Appointment Booking'],
-    image: 'docdoc.png',
-    links: {},
+      'The NAHJ for Consultation & Training website — consultation, training and digital products. Built and deployed with the team since Sep 2026.',
+    tags: ['Website development', 'Technical implementation', 'Deployment to hosting', 'Collaboration with the team'],
+    attribution:
+      'All three group sites were team efforts. The tags above are my part of that work; none of the sites is presented as solo work.',
+    image: null,
+    links: { live: 'https://nahjqatar.com/' },
   },
   {
-    title: 'Travella',
-    category: 'Flutter',
+    title: 'mgrowthhub.com',
+    category: 'Mindset',
+    context: 'Deployed',
+    role: 'Development, technical implementation and deployment, with the team',
     description:
-      'A travel discovery application designed to help users explore destinations, discover places, find hotels and experiences, and save favorite locations.',
-    tags: ['Flutter', 'Dart', 'Destinations', 'Favorites'],
-    image: 'travella.png',
-    links: {},
+      'The Mindset website — training and educational products. Built and deployed with the team since Sep 2026.',
+    tags: ['Website development', 'Technical implementation', 'Deployment to hosting', 'Collaboration with the team'],
+    attribution:
+      'All three group sites were team efforts. The tags above are my part of that work; none of the sites is presented as solo work.',
+    image: null,
+    links: { live: 'https://mgrowthhub.com/' },
   },
   {
-    title: 'Streaming App',
-    category: 'Flutter',
+    title: 'Skill Atlas',
+    category: 'NAHJ',
+    context: 'Live',
+    role: 'Product, platform, content and promotion — implementation with the team',
     description:
-      'A modern movie and TV streaming interface built with Flutter, featuring content discovery, recommendations, watchlists, popular titles, and detailed media browsing.',
-    tags: ['Flutter', 'Dart', 'Content Discovery', 'Watchlists'],
-    image: 'streaming-app.png',
-    links: {},
+      'A digital library of AI skills, prompts and practical workflows, live on the NAHJ website. The library keeps growing, so skill and prompt counts are not quoted here — the live site shows the current state.',
+    tags: [
+      'Product concept',
+      'Product experience',
+      'Platform and workflow development',
+      'Upload and approval workflow',
+      'Website and UI',
+      'Content structure',
+      'Organizing skills',
+      'Organizing prompts',
+      'Marketing and promotional materials',
+      'Video and content planning',
+    ],
+    attribution:
+      'This is the scope I was responsible for. Implementation involved the team, and where a teammate carried out a specific task, that work is theirs. I don’t claim to have personally coded every part of the platform.',
+    image: null,
+    links: { live: 'https://nahjqatar.com/ai-toolkit/' },
   },
   {
-    title: 'Harry Potter Library',
-    category: 'Flutter',
+    title: 'Sales CRM + WhatsApp Hub',
+    category: 'Cross-business',
+    context: 'In progress',
+    role: 'Building and leading development with the team',
     description:
-      'A themed digital library application for exploring the Harry Potter book collection, with book details, search, favorites, and an interactive browsing experience.',
-    tags: ['Flutter', 'Dart', 'Search', 'Favorites'],
-    image: 'harry-potter-library.png',
-    links: {},
-  },
-
-  {
-    title: 'NAHJ AI Assistant',
-    category: 'AI / AI Assistant',
-    layout: 'wide', // landscape screenshot: full-width card, image shown uncropped
-    description:
-      'An AI-powered virtual assistant inspired by modern assistants like Siri. It is designed to understand natural-language requests, process them using AI, and provide intelligent, conversational responses through a simple and intuitive assistant experience.',
-    tags: ['AI', 'AI Assistant', 'Virtual Assistant', 'Natural Language', 'Conversational AI', 'NAHJ'],
-    image: 'nahj-ai-assistant.png',
-    links: {},
-  },
-
-  // CV projects without screenshots — shown as compact cards under "More Projects".
-  {
-    title: 'Hospital Complaints Management System',
-    category: 'Flutter · AI',
-    context: 'DEPI Project',
-    description:
-      'A complaints platform for hospitals with secure multi-role authentication, anonymous reporting, an AI chatbot and real-time tracking.',
-    tags: ['Multi-role Authentication', 'Anonymous Reporting', 'AI Chatbot', 'Real-time Tracking'],
+      'A sales system being built for the group. Its planned scope covers lead management, follow-up and WhatsApp Business conversations. Under development — nothing here is presented as launched or complete.',
+    tags: [
+      'Lead management',
+      'Lead assignment',
+      'Follow-up workflows',
+      'Sales team workflows',
+      'WhatsApp Business integration',
+      'Multiple WhatsApp profiles and users',
+      'Customer conversations',
+      'Performance tracking',
+    ],
+    attribution: 'This is a team project. Completed features will be listed only once they are confirmed.',
     image: null,
     links: {},
   },
   {
-    title: 'Ministry of Interior Digital Reporting System',
-    category: 'Flutter · AI',
-    context: 'DEPI Project',
+    title: 'E-commerce rebuild',
+    category: 'External client',
+    context: 'In progress',
+    role: 'Project Manager, responsible for the overall project',
     description:
-      'A digital reporting system with anonymous reports, geolocation, multimedia uploads, voice-to-text and AI-based categorization.',
-    tags: ['Anonymous Reporting', 'Geolocation', 'Multimedia Uploads', 'Voice-to-Text', 'AI Categorization'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'Smart Legal Assistant',
-    category: 'Flutter · AI',
-    context: 'DEPI Project',
-    description: 'An AI legal chatbot with document OCR, NLP analysis and legal risk classification.',
-    tags: ['AI Legal Chatbot', 'Document OCR', 'NLP Analysis', 'Risk Classification'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'Sohba',
-    category: 'Flutter',
-    description:
-      'A food ordering platform connecting users with home-based food providers, with scalable backend integration using Firebase and Supabase.',
-    tags: ['Authentication', 'Restaurant Management', 'Menu Browsing', 'Order Tracking', 'Firebase', 'Supabase'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'E-Mazon',
-    category: 'Flutter E-Commerce',
-    description:
-      'An Amazon-style e-commerce app built with Flutter, featuring a clean UI, fast performance and a scalable code structure.',
-    tags: ['E-Commerce', 'Clean UI', 'Fast Performance', 'Scalable Structure'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'Doctor Appointment',
-    category: 'Flutter · REST API',
-    featured: false, // likely the same app as DocDoc — confirm before showing both
-    description:
-      'A Flutter app connected to RESTful APIs for searching doctors, booking appointments, choosing payment methods and viewing detailed summaries.',
-    tags: ['Doctor Search', 'Appointment Booking', 'Payment Methods', 'Appointment Summaries', 'RESTful APIs'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'Notaty',
-    category: 'Flutter · SQLite',
-    description:
-      'A modern note-taking app with note creation, editing, deletion, local storage and optimized performance across Android devices.',
-    tags: ['Note Creation', 'Editing & Deletion', 'Local Storage', 'SQLite', 'Android Performance'],
+      'A ground-up rebuild of an e-commerce store on Shopify, with marketing and video work to follow. Website scope: project planning, sitemap, user flow, UI/UX workflow, Shopify implementation, products, payment gateways, reviews, final QA. Upcoming: advertising and product videos, reels, shooting and filming, creative direction.',
+    tags: [
+      'Project planning',
+      'ClickUp setup and governance',
+      'Task approval',
+      'Daily team meeting',
+      'Final QA and review',
+      'Website, marketing and video workstreams',
+    ],
+    attribution:
+      'Done by me: planning, ClickUp setup and governance, task approval, the daily team meeting, final QA. Managed: the website, marketing and video workstreams and coordination across the project team. Done by the team: sitemap and user-flow diagrams, UI/UX, Shopify implementation, content plan, designs, video production. Products, payments and reviews are part of the scope I oversee; their hands-on setup isn’t claimed as my own work. The client isn’t named, and no unreleased screens or internal documents are shown.',
     image: null,
     links: {},
   },
 
-  // More projects from the CV — set featured: true to show any of them.
-  // TMDB Movies App and Harry Potter Books App may be the same apps as the
-  // Streaming App and Harry Potter Library screenshots above.
+  // Earlier apps — compact cards under "Earlier Apps".
   {
-    title: 'TMDB Movies App',
+    title: 'ISLAMI',
+    earlier: true,
     category: 'Flutter',
-    featured: false,
-    description: 'A Netflix-style movie app with movie listings, search and detailed pages using REST APIs.',
-    tags: ['REST APIs', 'Search', 'Movie Details'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'News App',
-    category: 'Flutter',
-    featured: false,
-    description: 'Browse the latest news from multiple categories, using REST APIs and a clean UI design.',
-    tags: ['REST APIs', 'Categories', 'Clean UI'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'Harry Potter Books App',
-    category: 'Flutter',
-    featured: false,
-    description: 'A themed app for Harry Potter books with clean UI, smooth navigation and an engaging experience.',
-    tags: ['Clean UI', 'Navigation'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'E-Commerce Coffee App',
-    category: 'Flutter',
-    featured: false,
-    description: 'An app for ordering and delivering coffee, with real-time product updates, cart and checkout.',
-    tags: ['Real-time Updates', 'Cart & Checkout'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'Figma Books App Design',
-    category: 'UI/UX',
-    featured: false,
-    description: 'A Figma UI design for a book borrowing app with a modern layout, smooth user flow and strong usability focus.',
-    tags: ['Figma', 'UI/UX'],
-    image: null,
-    links: {},
-  },
-  {
-    title: 'Library Borrowing App',
-    category: 'Java',
-    featured: false,
     description:
-      'An educational app to manage book borrowing at the institute, with authentication, dynamic book display and return reminders using Firebase Firestore and Storage.',
-    tags: ['Java', 'Firebase Firestore', 'Storage'],
+      'An Islamic app with the Quran, a Hadith collection, an electronic misbaha, Quran radio, prayer times and azkar.',
+    tags: ['Flutter'],
     image: null,
-    links: {},
-  },
-];
-
-/*
- * Creative work
- * areas: the creative areas documented in the CV (shown while there is no media).
- * items: real media only — { title, meta, type: 'image' | 'video', file } with the file in
- *        assets/images/ or assets/videos/. Once any category has items, the tabbed gallery
- *        replaces the areas overview.
- */
-export const creativeWork = [
-  {
-    id: 'design',
-    label: 'Design',
-    areas: ['Visual Designs', 'Social Media Creative Assets', 'UI/UX Design', 'Graphic Design'],
-    items: [],
+    links: { code: 'https://github.com/EslamHany2002/islamiapp' },
   },
   {
-    id: 'video',
-    label: 'Video',
-    areas: ['Marketing Videos', 'Promotional Content', 'Video Concepts & Scripts'],
-    items: [],
+    title: 'Solom Chat',
+    earlier: true,
+    category: 'Flutter',
+    description: 'A chat app for talking with friends, signed in with Gmail.',
+    tags: ['Flutter'],
+    image: null,
+    links: { code: 'https://github.com/EslamHany2002/Solom-Chat' },
   },
   {
-    id: 'ai-marketing',
-    label: 'AI Marketing',
-    areas: ['AI-Assisted Content', 'AI Marketing Workflows', 'Prompt-Based Creative Production'],
-    items: [],
-  },
-];
-
-export const achievements = [
-  {
-    title: '3rd Place Winner',
-    issuer: 'Ministry-Level Mobile App Competition',
-    year: null,
-    description: 'Graduation project.',
-  },
-  {
-    title: 'Best Idea Award',
-    issuer: 'Nationwide Mobile Application Competition',
-    year: null,
-    description: 'Graduation project.',
+    title: 'Brain Cancer Detection',
+    category: 'Graduation project',
+    context: 'Graded A+',
+    description:
+      'A website and mobile application that detects whether a patient has a tumor from MRI, and shows its location, grade, type and treatment, using machine learning and deep learning.',
+    tags: ['Python', 'Deep learning', 'Flask', 'Flutter', 'HTML/CSS/JS', 'Firebase'],
+    image: null,
+    links: { code: 'https://github.com/EslamHany2002/Rickman' },
   },
 ];
 
 export const teaching = {
   intro:
-    'As a Flutter Instructor at AMIT Learning and a Technical Mentor for DEPI Round 3, I deliver training sessions, review students’ code and guide them through building real-world applications with Flutter and Firebase.',
-  // Values taken directly from the CV.
-  highlights: [
-    { value: '3', label: 'Real-world systems given architectural guidance' },
-    { value: 'DEPI', label: 'Round 3 technical mentor' },
-  ],
+    'My work isn’t limited to engineering. I also develop training products for the group; depending on the program, the work belongs to NAHJ or to Mindset.',
+  highlights: [],
   focusAreas: [
     {
-      id: 'training',
-      title: 'Flutter training',
-      text: 'Training sessions that guide students through real-world applications with Flutter and Firebase.',
+      id: 'curriculum',
+      title: 'Curriculum development',
+      text: 'Developing new curricula · Updating existing curricula · Improving course structures · Reviewing educational materials.',
     },
     {
-      id: 'mentoring',
-      title: 'Technical mentoring — DEPI Round 3',
-      text: 'Supporting Flutter students and resolving complex technical challenges.',
+      id: 'products',
+      title: 'New training products',
+      text: 'Workshops · Courses · Training programs · Designing learning experiences.',
     },
     {
-      id: 'code-review',
-      title: 'Code reviews',
-      text: 'Detailed feedback on code quality, maintainability and Flutter best practices.',
-    },
-    {
-      id: 'architecture',
-      title: 'Architecture guidance',
-      text: 'Identifying architectural issues and steering projects toward clean architecture.',
-    },
-    {
-      id: 'debugging',
-      title: 'Debugging support',
-      text: 'Working with learners to debug complex issues across multiple Flutter projects.',
-    },
-    {
-      id: 'performance',
-      title: 'Performance optimization',
-      text: 'Improving application performance and user experience.',
-    },
-    {
-      id: 'practices',
-      title: 'Modern Flutter practices',
-      text: 'State management, API integration, local storage, Firebase, responsive UI and clean architecture.',
+      id: 'materials',
+      title: 'Training materials',
+      text: 'Presentations · Practical exercises · Supporting resources · AI educational content.',
     },
   ],
 };
@@ -614,10 +546,65 @@ export const teaching = {
 export const contact = {
   eyebrow: 'Contact',
   headline: "Let's build something together.",
-  text: 'For Flutter development, AI-powered marketing or Flutter training — reach out by email or phone.',
-  location: 'Giza, Egypt',
+  text: 'For AI engineering, websites, digital products or training programs — reach out by email.',
+  location: null,
 };
 
 export const footer = {
-  tagline: 'Flutter Developer / AI & Digital Marketing Specialist',
+  tagline: 'AI Engineering Team Lead',
+};
+
+// Interface strings (everything that isn't portfolio content).
+export const ui = {
+  lang: 'en',
+  dir: 'ltr',
+  skip: 'Skip to content',
+  scroll: 'Scroll',
+  disciplines: 'Disciplines',
+  education: 'Education',
+  current: 'Current',
+  info: 'Info',
+  languages: 'Languages',
+  tools: 'Tools',
+  email: 'Email',
+  backToTop: 'Back to top',
+  rights: 'All rights reserved.',
+  downloadCv: 'Download CV',
+  openMenu: 'Open menu',
+  closeMenu: 'Close menu',
+  sidebarLabel: 'Profile and navigation',
+  sectionsLabel: 'Sections',
+  visitSite: 'Visit site',
+  sourceCode: 'Source Code',
+  scopeLabel: 'Scope and highlights',
+  detailsLabel: 'Details',
+  nav: {
+    home: 'Home',
+    about: 'About',
+    services: 'How I Work',
+    experience: 'Experience',
+    skills: 'Skills',
+    projects: 'Projects',
+    teaching: 'Training',
+    contact: 'Contact',
+  },
+  form: {
+    name: 'Name',
+    email: 'Email',
+    subject: 'Subject',
+    optional: '(optional)',
+    message: 'Message',
+    send: 'Send Message',
+    sending: 'Sending…',
+    sendingHint: 'Sending your message…',
+    idle: 'Your message goes straight to my inbox.',
+    success: "Message sent successfully. I'll get back to you soon.",
+    error: "Sorry, your message couldn't be sent. Please try again, or email me directly at",
+    unconfigured: 'The contact form is unavailable right now. Please email me directly at',
+    errName: 'Please enter your name.',
+    errEmailEmpty: 'Please enter your email address.',
+    errEmailInvalid: 'Please enter a valid email address.',
+    errMessage: 'Please write a message of at least 10 characters.',
+    defaultSubject: 'New portfolio message from',
+  },
 };

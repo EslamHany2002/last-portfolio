@@ -1,4 +1,5 @@
 import { ArrowUpRight, CodeXml } from 'lucide-react';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import Button from './Button.jsx';
 import Media from './Media.jsx';
 
@@ -10,7 +11,8 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
  * Grid screenshots are portrait (3:4 app posters), so the grid media area is portrait too.
  */
 export default function ProjectCard({ project, large = false, wide = false }) {
-  const { title, category, context, year, description, role, image, links = {} } = project;
+  const { ui } = useContent();
+  const { title, category, context, year, description, role, attribution, image, links = {} } = project;
   const tags = project.tags ?? project.technologies ?? [];
   const meta = [context, year, role].filter(Boolean);
   const hasLinks = links.live || links.code;
@@ -43,7 +45,7 @@ export default function ProjectCard({ project, large = false, wide = false }) {
         {description && <p className="project-card__text">{description}</p>}
 
         {tags.length > 0 && (
-          <ul className="tag-list" aria-label="Key features">
+          <ul className="tag-list" aria-label={ui.scopeLabel}>
             {tags.map((tag) => (
               <li className="tag" key={tag}>
                 {tag}
@@ -52,18 +54,20 @@ export default function ProjectCard({ project, large = false, wide = false }) {
           </ul>
         )}
 
+        {attribution && <p className="project-card__note">{attribution}</p>}
+
         {hasLinks && (
           <div className="project-card__actions">
             {large ? (
               <>
                 {links.live && (
                   <Button href={links.live} icon={ArrowUpRight} size="sm" {...external}>
-                    Live Demo
+                    {ui.visitSite}
                   </Button>
                 )}
                 {links.code && (
                   <Button href={links.code} icon={CodeXml} variant="outline" size="sm" {...external}>
-                    Source Code
+                    {ui.sourceCode}
                   </Button>
                 )}
               </>
@@ -71,12 +75,12 @@ export default function ProjectCard({ project, large = false, wide = false }) {
               <>
                 {links.live && (
                   <a href={links.live} className="text-link" {...external}>
-                    Live Demo <ArrowUpRight size={15} strokeWidth={1.75} aria-hidden="true" />
+                    {ui.visitSite} <ArrowUpRight size={15} strokeWidth={1.75} aria-hidden="true" />
                   </a>
                 )}
                 {links.code && (
                   <a href={links.code} className="text-link" {...external}>
-                    Source Code <CodeXml size={15} strokeWidth={1.75} aria-hidden="true" />
+                    {ui.sourceCode} <CodeXml size={15} strokeWidth={1.75} aria-hidden="true" />
                   </a>
                 )}
               </>

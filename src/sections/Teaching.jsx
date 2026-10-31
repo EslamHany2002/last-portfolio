@@ -1,5 +1,7 @@
 import {
+  BookOpen,
   Bug,
+  FileText,
   Code,
   Gauge,
   GitPullRequest,
@@ -10,7 +12,7 @@ import {
   Presentation,
   Users,
 } from 'lucide-react';
-import { sections, teaching } from '../data/portfolio.js';
+import { useContent } from '../i18n/LanguageContext.jsx';
 import { sectionEyebrow } from '../data/navigation.js';
 import SectionTitle from '../components/SectionTitle.jsx';
 
@@ -24,14 +26,18 @@ const FOCUS_ICONS = {
   practices: Code,
   students: GraduationCap,
   workshops: Lightbulb,
+  curriculum: BookOpen,
+  products: Presentation,
+  materials: FileText,
 };
 
 export default function Teaching() {
+  const { sections, teaching, ui } = useContent();
   return (
     <section id="teaching" className="section" aria-labelledby="teaching-title">
       <div className="container teaching__inner">
         <div className="teaching__aside">
-          <SectionTitle eyebrow={sectionEyebrow('teaching')} title={sections.teaching.title} id="teaching-title" />
+          <SectionTitle eyebrow={sectionEyebrow('teaching', ui.nav)} title={sections.teaching.title} id="teaching-title" />
           {teaching.intro && <p className="teaching__intro reveal">{teaching.intro}</p>}
 
           {teaching.highlights.length > 0 && (
